@@ -24,9 +24,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
+            let imageModels: ImageModels = loadJSON(fromFile: "sample.JSON")
+            let localImages = LocalImages(images: imageModels)
+            
             let window = UIWindow(windowScene: windowScene)
-            window.rootViewController = UIHostingController(rootView: contentView)
+            window.rootViewController = UIHostingController(rootView: contentView.environmentObject(localImages))
             self.window = window
+            
             window.makeKeyAndVisible()
         }
     }

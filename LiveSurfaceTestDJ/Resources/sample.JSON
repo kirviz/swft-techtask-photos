@@ -1,0 +1,80 @@
+{
+  "images": {
+    "2CBA9F8B-0C1E-436B-A638-2A1C50FB94F5": {
+      "index": 0,
+      "name": "Packaging",
+      "number": "0661",
+      "image": "0661.jpg",
+      "category": "category.default",
+      "version": "1",
+      "tags": {
+        "sizedescription": "",
+        "sizescale": "0.000",
+        "sizewidth": "157.000",
+        "sizewidtharc": "0",
+        "sizeheight": "208.000",
+        "sizeheightarc": "0",
+        "sizedepth": "76.000",
+        "sizedeptharc": "0",
+        "sizeunits": "mm"
+      }
+    },
+    "447DE767-E4BD-4BA5-B34E-EB42DA5F715D": {
+      "index": 1,
+      "name": "Textile",
+      "number": "0673",
+      "image": "0673.jpg",
+      "category": "category.default",
+      "version": "1",
+      "tags": {
+        "sizedescription": "",
+        "sizescale": "1.000",
+        "sizewidth": "0.000",
+        "sizewidtharc": "0",
+        "sizeheight": "0.000",
+        "sizeheightarc": "0",
+        "sizedepth": "0.000",
+        "sizedeptharc": "0",
+        "sizeunits": ""
+      }
+    },
+    "7495F1A2-9080-4B0E-8BF1-3B1066EF5B27": {
+      "index": 2,
+      "name": "Packaging",
+      "number": "0675",
+      "image": "0675.jpg",
+      "category": "category.default",
+      "version": "1",
+      "tags": {
+        "sizedescription": "",
+        "sizescale": "1.000",
+        "sizewidth": "0.000",
+        "sizewidtharc": "0",
+        "sizeheight": "0.000",
+        "sizeheightarc": "0",
+        "sizedepth": "0.000",
+        "sizedeptharc": "0",
+        "sizeunits": ""
+      }
+    },
+    "B06B954E-47F1-4830-AC6A-79D179C9CED1": {
+      "index": 3,
+      "name": "Packaging",
+      "number": "0676",
+      "image": "0676.jpg",
+      "category": "category.default",
+      "version": "1",
+      "tags": {
+        "sizedescription": "",
+        "sizescale": "1.000",
+        "sizewidth": "0.000",
+        "sizewidtharc": "0",
+        "sizeheight": "0.000",
+        "sizeheightarc": "0",
+        "sizedepth": "0.000",
+        "sizedeptharc": "0",
+        "sizeunits": ""
+      }
+    }
+  }
+}

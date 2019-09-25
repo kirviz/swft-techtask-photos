@@ -17,10 +17,12 @@ private let dateFormatter: DateFormatter = {
 
 struct ContentView: View {
     @State private var dates = [Date]()
+    
+    @EnvironmentObject private var images: LocalImages
 
     var body: some View {
         NavigationView {
-            MasterView(dates: $dates)
+            MasterView(dates: $dates).environmentObject(images)
                 .navigationBarTitle(Text("Master"))
                 .navigationBarItems(
                     leading: EditButton(),
@@ -33,15 +35,21 @@ struct ContentView: View {
                     }
                 )
             DetailView()
-        }.navigationViewStyle(DoubleColumnNavigationViewStyle())
+        }.navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
 struct MasterView: View {
     @Binding var dates: [Date]
+    
+    @EnvironmentObject private var images: LocalImages
 
     var body: some View {
         List {
+            ForEach(images.images, id: \.index) { image in
+                Text("\(image.image)")
+            }
+            
             ForEach(dates, id: \.self) { date in
                 NavigationLink(
                     destination: DetailView(selectedDate: date)
@@ -72,6 +80,7 @@ struct DetailView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        let images = LocalImages(images: loadJSON(fromFile: "sample.JSON"))
+        return ContentView().environmentObject(images)
     }
 }
