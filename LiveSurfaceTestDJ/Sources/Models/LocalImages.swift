@@ -8,23 +8,31 @@
 
 import Foundation
 import Combine
+import UIKit
+
+struct LocalImage: Identifiable {
+    var id: Int { metaData.index }
+    
+    public let metaData: ImageModel
+    public var downloadedImage: UIImage?
+}
 
 final class LocalImages: ObservableObject {
     // there are no requirements to keep the UUIDs in the client app, so ignoring them for simplicity
-    @Published var images: [ImageModel] = []
+    @Published var images: [LocalImage] = []
     
     init() {
     }
     
     init(images: ImageModels) {
-        self.images = images.toArray()
+        self.images = images.toLocalImages()
     }
 }
 
 extension ImageModels {
-    func toArray() -> [ImageModel] {
-        return Array(self.images.values).sorted(by: { (left, right) -> Bool in
+    func toLocalImages() -> [LocalImage] {
+        return self.images.values.sorted(by: { (left, right) -> Bool in
             return left.index < right.index
-        })
+        }).map { LocalImage(metaData: $0, downloadedImage: nil) }
     }
 }

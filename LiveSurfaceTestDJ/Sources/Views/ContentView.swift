@@ -19,12 +19,13 @@ struct ContentView: View {
 
     var body: some View {
         NavigationView {
-            MasterView()
+            MasterView(client: client)
                 .navigationBarTitle(Text("So many beautiful images"))
                 .navigationBarItems(
                     leading: Button(
                         action: {
-                            self.client?.fetch()
+                            self.client?.localImages.images = []
+                            self.client?.fetchImageList()
                         }
                     ) {
                         Image(systemName: "arrow.counterclockwise")
@@ -33,21 +34,46 @@ struct ContentView: View {
             DetailView()
         }.navigationViewStyle(StackNavigationViewStyle())
             .onAppear {
-                self.client?.fetch()
+                self.client?.fetchImageList()
         }
     }
 }
 
 struct MasterView: View {
     @EnvironmentObject private var images: LocalImages
+    
+    private let client: RestClient?
+    
+    init(client: RestClient?) {
+        self.client = client
+    }
+    
+    func imageOrPlaceholder(_ image: LocalImage) -> Image {
+        if let downloadedImage = image.downloadedImage {
+            return Image(uiImage: downloadedImage)
+        } else {
+            return Image("placeholder")
+        }
+    }
 
     var body: some View {
         List {
-            ForEach(images.images, id: \.index) { image in
+            ForEach(images.images) { (image: LocalImage) in
                 NavigationLink(
                     destination: DetailView(selectedImage: image)
                 ) {
-                    Text("\(image.image)")
+                    HStack {
+                        self.imageOrPlaceholder(image)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 100, height: 100)
+
+                        Text("\(image.metaData.image)")
+                    }.onAppear {
+                        if image.downloadedImage == nil {
+                            self.client?.downloadImage(localImage: image)
+                        }
+                    }
                 }
             }
         }
@@ -55,12 +81,12 @@ struct MasterView: View {
 }
 
 struct DetailView: View {
-    var selectedImage: ImageModel?
+    var selectedImage: LocalImage?
 
     var body: some View {
         Group {
             if selectedImage != nil {
-                Text("\(selectedImage!.image)")
+                Text("\(selectedImage!.metaData.image)")
             } else {
                 Text("Swipe right to browse images")
             }
