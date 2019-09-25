@@ -21,7 +21,7 @@ struct MasterView: View {
         List {
             ForEach(images.images) { (image: LocalImage) in
                 NavigationLink(
-                    destination: DetailView(selectedImage: image)
+                    destination: DetailView(image: image)
                 ) {
                     ImageRow(image: image, client: self.client)
                 }

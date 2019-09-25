@@ -20,6 +20,8 @@ struct ImageModel: Codable {
     let image: String
     let category: String
     let version: String
+    
+    let tags: Tags
 }
 
 struct Tags: Codable {

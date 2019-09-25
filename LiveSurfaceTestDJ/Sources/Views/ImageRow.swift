@@ -17,8 +17,8 @@ struct ImageRow: View {
         self.client = client
     }
     
-    private func imageOrPlaceholder(_ image: LocalImage) -> Image {
-        if let downloadedImage = image.downloadedImage {
+    static func imageOrPlaceholder(_ image: LocalImage?) -> Image {
+        if let downloadedImage = image?.downloadedImage {
             return Image(uiImage: downloadedImage)
         } else {
             return Image("placeholder")
@@ -27,7 +27,7 @@ struct ImageRow: View {
     
     var body: some View {
         HStack {
-            self.imageOrPlaceholder(image)
+            ImageRow.imageOrPlaceholder(image)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 100, height: 100)
