@@ -8,13 +8,6 @@
 
 import SwiftUI
 
-private let dateFormatter: DateFormatter = {
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateStyle = .medium
-    dateFormatter.timeStyle = .medium
-    return dateFormatter
-}()
-
 struct ContentView: View {
     @State private var dates = [Date]()
     
@@ -23,15 +16,14 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             MasterView(dates: $dates).environmentObject(images)
-                .navigationBarTitle(Text("Master"))
+                .navigationBarTitle(Text("So many beautiful images"))
                 .navigationBarItems(
-                    leading: EditButton(),
-                    trailing: Button(
+                    leading: Button(
                         action: {
-                            withAnimation { self.dates.insert(Date(), at: 0) }
+                            // TODO: refresh
                         }
                     ) {
-                        Image(systemName: "plus")
+                        Image(systemName: "arrow.counterclockwise")
                     }
                 )
             DetailView()
@@ -47,33 +39,27 @@ struct MasterView: View {
     var body: some View {
         List {
             ForEach(images.images, id: \.index) { image in
-                Text("\(image.image)")
-            }
-            
-            ForEach(dates, id: \.self) { date in
                 NavigationLink(
-                    destination: DetailView(selectedDate: date)
+                    destination: DetailView(selectedImage: image)
                 ) {
-                    Text("\(date, formatter: dateFormatter)")
+                    Text("\(image.image)")
                 }
-            }.onDelete { indices in
-                indices.forEach { self.dates.remove(at: $0) }
             }
         }
     }
 }
 
 struct DetailView: View {
-    var selectedDate: Date?
+    var selectedImage: ImageModel?
 
     var body: some View {
         Group {
-            if selectedDate != nil {
-                Text("\(selectedDate!, formatter: dateFormatter)")
+            if selectedImage != nil {
+                Text("\(selectedImage!.image)")
             } else {
-                Text("Detail view content goes here")
+                Text("Swipe right to browse images")
             }
-        }.navigationBarTitle(Text("Detail"))
+        }.navigationBarTitle(Text("Best image ever!"))
     }
 }
 
