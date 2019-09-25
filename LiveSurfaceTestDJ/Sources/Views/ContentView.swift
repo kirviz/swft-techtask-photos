@@ -9,18 +9,22 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var dates = [Date]()
-    
     @EnvironmentObject private var images: LocalImages
+    
+    private let client: RestClient?
+    
+    init(client: RestClient?) {
+        self.client = client
+    }
 
     var body: some View {
         NavigationView {
-            MasterView(dates: $dates).environmentObject(images)
+            MasterView()
                 .navigationBarTitle(Text("So many beautiful images"))
                 .navigationBarItems(
                     leading: Button(
                         action: {
-                            // TODO: refresh
+                            self.client?.fetch()
                         }
                     ) {
                         Image(systemName: "arrow.counterclockwise")
@@ -28,12 +32,13 @@ struct ContentView: View {
                 )
             DetailView()
         }.navigationViewStyle(StackNavigationViewStyle())
+            .onAppear {
+                self.client?.fetch()
+        }
     }
 }
 
 struct MasterView: View {
-    @Binding var dates: [Date]
-    
     @EnvironmentObject private var images: LocalImages
 
     var body: some View {
@@ -67,6 +72,6 @@ struct DetailView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         let images = LocalImages(images: loadJSON(fromFile: "sample.JSON"))
-        return ContentView().environmentObject(images)
+        return ContentView(client: nil).environmentObject(images)
     }
 }

@@ -11,6 +11,7 @@
 		87535577233BBF8D00581B65 /* ImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87535576233BBF8D00581B65 /* ImageModel.swift */; };
 		87535579233BC4D700581B65 /* DebugHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87535578233BC4D700581B65 /* DebugHelpers.swift */; };
 		8753557B233BC76900581B65 /* LocalImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8753557A233BC76900581B65 /* LocalImages.swift */; };
+		8753557F233BDBC100581B65 /* RestClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8753557E233BDBC100581B65 /* RestClient.swift */; };
 		87BE01C5233BBABB00BD68A6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87BE01C4233BBABB00BD68A6 /* AppDelegate.swift */; };
 		87BE01C7233BBABB00BD68A6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87BE01C6233BBABB00BD68A6 /* SceneDelegate.swift */; };
 		87BE01C9233BBABB00BD68A6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87BE01C8233BBABB00BD68A6 /* ContentView.swift */; };
@@ -24,6 +25,7 @@
 		87535576233BBF8D00581B65 /* ImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageModel.swift; sourceTree = "<group>"; };
 		87535578233BC4D700581B65 /* DebugHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugHelpers.swift; sourceTree = "<group>"; };
 		8753557A233BC76900581B65 /* LocalImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalImages.swift; sourceTree = "<group>"; };
+		8753557E233BDBC100581B65 /* RestClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestClient.swift; sourceTree = "<group>"; };
 		87BE01C1233BBABB00BD68A6 /* LiveSurfaceTestDJ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiveSurfaceTestDJ.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87BE01C4233BBABB00BD68A6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		87BE01C6233BBABB00BD68A6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,9 +51,10 @@
 			isa = PBXGroup;
 			children = (
 				87535575233BBEC300581B65 /* Models */,
+				8753557C233BDB8300581B65 /* Views */,
+				8753557D233BDBAA00581B65 /* Other */,
 				87BE01C4233BBABB00BD68A6 /* AppDelegate.swift */,
 				87BE01C6233BBABB00BD68A6 /* SceneDelegate.swift */,
-				87BE01C8233BBABB00BD68A6 /* ContentView.swift */,
 				87535578233BC4D700581B65 /* DebugHelpers.swift */,
 			);
 			path = Sources;
@@ -72,6 +75,22 @@
 				8753557A233BC76900581B65 /* LocalImages.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		8753557C233BDB8300581B65 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				87BE01C8233BBABB00BD68A6 /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8753557D233BDBAA00581B65 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				8753557E233BDBC100581B65 /* RestClient.swift */,
+			);
+			path = Other;
 			sourceTree = "<group>";
 		};
 		87BE01B8233BBABB00BD68A6 = {
@@ -188,6 +207,7 @@
 				87BE01C5233BBABB00BD68A6 /* AppDelegate.swift in Sources */,
 				87BE01C7233BBABB00BD68A6 /* SceneDelegate.swift in Sources */,
 				87BE01C9233BBABB00BD68A6 /* ContentView.swift in Sources */,
+				8753557F233BDBC100581B65 /* RestClient.swift in Sources */,
 				8753557B233BC76900581B65 /* LocalImages.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

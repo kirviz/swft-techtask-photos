@@ -13,8 +13,17 @@ final class LocalImages: ObservableObject {
     // there are no requirements to keep the UUIDs in the client app, so ignoring them for simplicity
     @Published var images: [ImageModel] = []
     
+    init() {
+    }
+    
     init(images: ImageModels) {
-        self.images = Array(images.images.values).sorted(by: { (left, right) -> Bool in
+        self.images = images.toArray()
+    }
+}
+
+extension ImageModels {
+    func toArray() -> [ImageModel] {
+        return Array(self.images.values).sorted(by: { (left, right) -> Bool in
             return left.index < right.index
         })
     }
