@@ -72,7 +72,7 @@ public enum Endpoint {
         case let .imageList(key):
             return (path: "/api/images.php",
                     queryItems: [URLQueryItem(name: "key", value: key),
-//                                 URLQueryItem(name: "pro", value: "1")
+                                 URLQueryItem(name: "pro", value: "1")
                                 ])
         case let .downloadImage(fileName):
             return (path: "/images/\(fileName)", queryItems: nil)
