@@ -32,7 +32,11 @@ struct ImageRow: View {
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 100, height: 100)
 
-            Text("\(image.metaData.image)")
+            VStack(alignment: .leading) {
+                Text("\(image.metaData.name)").font(.title)
+                Text("\(image.metaData.category)")
+                Text("\(image.metaData.number)")
+            }
             
             Spacer()
         }.onAppear {
