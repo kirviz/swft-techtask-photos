@@ -18,7 +18,6 @@ struct LocalImage: Identifiable {
 }
 
 final class LocalImages: ObservableObject {
-    // there are no requirements to keep the UUIDs in the client app, so ignoring them for simplicity
     @Published var images: [LocalImage] = []
     
     init() {

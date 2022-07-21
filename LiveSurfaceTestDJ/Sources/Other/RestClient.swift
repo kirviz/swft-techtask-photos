@@ -12,21 +12,48 @@ import SwiftUI
 
 class RestClient {
     private let apiKey = "c87aed78-6e6c-41c7-959d-76fbee138452"
-    private let baseURL = "https://www.livesurface.com/test"
+    private let baseURL = "http://127.0.0.1:8080/"
+    private let imagesURL = "https://storage.googleapis.com/"
     
     private var disposables = Set<AnyCancellable>()
     
     public private(set) var localImages = LocalImages()
     
+    enum FailureReason : Error {
+        case sessionFailed(error: URLError)
+        case decodingFailed(error: Swift.DecodingError)
+        case other(Error)
+    }
+    
     public func fetchImageList() {
         guard let url = generateURL(with: .imageList(apiKey: apiKey)) else { return }
         
-        URLSession.shared.dataTaskPublisher(for: url)
+        let failable: AnyPublisher<ImageModels, FailureReason>
+        
+        failable = URLSession.shared.dataTaskPublisher(for: url)
             .map { $0.data }
             .decode(type: ImageModels.self, decoder: JSONDecoder())
-            .replaceError(with: ImageModels(images: [:]))
-            .map { $0.toLocalImages() }
+            .mapError({ error in
+              switch error {
+              case let decodingError as Swift.DecodingError:
+                  return .decodingFailed(error: decodingError)
+              case let urlError as URLError:
+                  return .sessionFailed(error: urlError)
+              default:
+                  return .other(error)
+              }
+            })
             .eraseToAnyPublisher()
+        
+        let recovered = failable
+            .catch { (error) -> Just<ImageModels> in
+                // send to an error logger in a real project
+                print(error)
+                return Just(ImageModels(images: [:]))
+            }
+        
+        recovered
+            .map { $0.toLocalImages() }
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [weak self] images in
                 self?.localImages.images = images
@@ -42,8 +69,9 @@ class RestClient {
             .eraseToAnyPublisher()
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [weak self] image in
+                // duplicating the image model with actual image data added
                 let newImage = LocalImage(metaData: localImage.metaData, downloadedImage: image)
-                // this is scary... would be better to get back to dictionary (but need to copy the UUID into the LocalImage)
+                // overwriting the image
                 self?.localImages.images[localImage.metaData.index] = newImage
             }).store(in: &disposables)
     }
@@ -51,7 +79,16 @@ class RestClient {
     private func generateURL(with endpoint: Endpoint) -> URL? {
         let (path, queryItems) = endpoint.properties
         
-        let urlString = "\(baseURL)\(path)"
+        // this may look ugly but is
+        let url: String
+        switch endpoint {
+        case .downloadImage:
+            url = imagesURL
+        default:
+            url = baseURL
+        }
+        
+        let urlString = "\(url)\(path)"
         
         guard var urlComponents = URLComponents(string: urlString) else {
             return nil
@@ -70,12 +107,12 @@ public enum Endpoint {
     public var properties: (path: String, queryItems: [URLQueryItem]?) {
         switch self {
         case let .imageList(key):
-            return (path: "/api/images.php",
+            return (path: "livesurface/",
                     queryItems: [URLQueryItem(name: "key", value: key),
                                  URLQueryItem(name: "pro", value: "1")
                                 ])
         case let .downloadImage(fileName):
-            return (path: "/images/\(fileName)", queryItems: nil)
+            return (path: "krimages/random-smaller/\(fileName)", queryItems: nil)
         }
     }
 }
