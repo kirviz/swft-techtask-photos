@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import CachedAsyncImage
 
 struct ImageRow: View {
     private let image: LocalImage
@@ -17,19 +18,9 @@ struct ImageRow: View {
         self.client = client
     }
     
-    static func imageOrPlaceholder(_ image: LocalImage?) -> Image {
-        if let downloadedImage = image?.downloadedImage {
-            return Image(uiImage: downloadedImage)
-        } else {
-            return Image("placeholder")
-        }
-    }
-    
     var body: some View {
         HStack {
-            ImageRow.imageOrPlaceholder(image)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
+            networkImage(url: URL(string: image.metaData.thumbnail_url))
                 .frame(width: 100, height: 100)
 
             VStack(alignment: .leading) {
@@ -39,10 +30,6 @@ struct ImageRow: View {
             }
             
             Spacer()
-        }.onAppear {
-            if self.image.downloadedImage == nil {
-                self.client?.downloadImage(localImage: self.image)
-            }
         }
     }
 }

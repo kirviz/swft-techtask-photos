@@ -18,7 +18,7 @@ struct DetailView: View {
         Group {
             if image != nil {
                 VStack {
-                    ImageRow.imageOrPlaceholder(image).resizable().aspectRatio(contentMode: .fit)
+                    networkImage(url: URL(string: image?.metaData.url ?? ""))
                     
                     Group {
                         Group {
@@ -27,7 +27,6 @@ struct DetailView: View {
                         HStack { Text("Index:"); Spacer(); Text("\(data.index)") }
                         HStack { Text("Name:"); Spacer(); Text("\(data.name)") }
                         HStack { Text("Number:"); Spacer(); Text("\(data.number)") }
-                        HStack { Text("Image:"); Spacer(); Text("\(data.image)") }
                         HStack { Text("Category:"); Spacer(); Text("\(data.category)") }
                         HStack { Text("Version:"); Spacer(); Text("\(data.version)") }
                         }
@@ -46,7 +45,7 @@ struct DetailView: View {
                     Spacer()
                 }.navigationBarTitle(Text("\(data.name)"))
             } else {
-                Text("Swipe right to browse images")
+                Text("There was a problem with this image, please go back and try again")
             }
         }
     }

@@ -36,6 +36,7 @@ struct ContentView: View {
             .onAppear {
                 self.client?.fetchImageList()
         }
+            .accentColor(.black)
     }
 }
 

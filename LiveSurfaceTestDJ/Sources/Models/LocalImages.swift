@@ -19,6 +19,7 @@ struct LocalImage: Identifiable {
 
 final class LocalImages: ObservableObject {
     @Published var images: [LocalImage] = []
+    @Published var loading = false
     
     init() {
     }
@@ -35,3 +36,4 @@ extension ImageModels {
         }).map { LocalImage(metaData: $0, downloadedImage: nil) }
     }
 }
+

@@ -1,80 +1,105 @@
 {
-  "images": {
-    "2CBA9F8B-0C1E-436B-A638-2A1C50FB94F5": {
-      "index": 0,
-      "name": "Packaging",
-      "number": "0661",
-      "image": "0661.jpg",
-      "category": "category.default",
-      "version": "1",
-      "tags": {
-        "sizedescription": "",
-        "sizescale": "0.000",
-        "sizewidth": "157.000",
-        "sizewidtharc": "0",
-        "sizeheight": "208.000",
-        "sizeheightarc": "0",
-        "sizedepth": "76.000",
-        "sizedeptharc": "0",
-        "sizeunits": "mm"
-      }
-    },
-    "447DE767-E4BD-4BA5-B34E-EB42DA5F715D": {
-      "index": 1,
-      "name": "Textile",
-      "number": "0673",
-      "image": "0673.jpg",
-      "category": "category.default",
-      "version": "1",
-      "tags": {
-        "sizedescription": "",
-        "sizescale": "1.000",
-        "sizewidth": "0.000",
-        "sizewidtharc": "0",
-        "sizeheight": "0.000",
-        "sizeheightarc": "0",
-        "sizedepth": "0.000",
-        "sizedeptharc": "0",
-        "sizeunits": ""
-      }
-    },
-    "7495F1A2-9080-4B0E-8BF1-3B1066EF5B27": {
-      "index": 2,
-      "name": "Packaging",
-      "number": "0675",
-      "image": "0675.jpg",
-      "category": "category.default",
-      "version": "1",
-      "tags": {
-        "sizedescription": "",
-        "sizescale": "1.000",
-        "sizewidth": "0.000",
-        "sizewidtharc": "0",
-        "sizeheight": "0.000",
-        "sizeheightarc": "0",
-        "sizedepth": "0.000",
-        "sizedeptharc": "0",
-        "sizeunits": ""
-      }
-    },
-    "B06B954E-47F1-4830-AC6A-79D179C9CED1": {
-      "index": 3,
-      "name": "Packaging",
-      "number": "0676",
-      "image": "0676.jpg",
-      "category": "category.default",
-      "version": "1",
-      "tags": {
-        "sizedescription": "",
-        "sizescale": "1.000",
-        "sizewidth": "0.000",
-        "sizewidtharc": "0",
-        "sizeheight": "0.000",
-        "sizeheightarc": "0",
-        "sizedepth": "0.000",
-        "sizedeptharc": "0",
-        "sizeunits": ""
-      }
+    "images": {
+        "83ed5a48-8c24-4ad2-9ce2-2b26364b7498": {
+            "index": 1,
+            "name": "save",
+            "number": "0001",
+            "url": "https://ik.imagekit.io/kirviz/random-smaller/0001.jpg",
+            "//empty on purpose": "//for testing purposes",
+            "thumbnail_url": "",
+            "category": "category.card",
+            "version": "1",
+            "tags": {
+                "sizedescription": "",
+                "sizescale": "0.000",
+                "sizewidth": "160",
+                "sizewidtharc": "0",
+                "sizeheight": "190",
+                "sizeheightarc": "0",
+                "sizedepth": "42",
+                "sizedeptharc": "0",
+                "sizeunits": "mm"
+            }
+        },
+        "99d20b35-752a-482c-a9d6-3734deb0c99a": {
+            "index": 0,
+            "name": "report",
+            "number": "0002",
+            "url": "https://ik.imagekit.io/kirviz/random-smaller/0002.jpg",
+            "thumbnail_url": "https://ik.imagekit.io/kirviz/random-smaller/tr:w-200,h-200/0002.jpg",
+            "category": "category.banner",
+            "version": "1",
+            "tags": {
+                "sizedescription": "",
+                "sizescale": "0.000",
+                "sizewidth": "268",
+                "sizewidtharc": "0",
+                "sizeheight": "169",
+                "sizeheightarc": "0",
+                "sizedepth": "75",
+                "sizedeptharc": "0",
+                "sizeunits": "mm"
+            }
+        },
+        "f24192e9-985f-4d66-bdec-e8c12acfa197": {
+            "index": 2,
+            "name": "justify",
+            "number": "0003",
+            "url": "https://ik.imagekit.io/kirviz/random-smaller/0003.jpg",
+            "thumbnail_url": "https://ik.imagekit.io/kirviz/random-smaller/tr:w-200,h-200/0003.jpg",
+            "category": "category.card",
+            "version": "1",
+            "tags": {
+                "sizedescription": "",
+                "sizescale": "0.000",
+                "sizewidth": "267",
+                "sizewidtharc": "0",
+                "sizeheight": "279",
+                "sizeheightarc": "0",
+                "sizedepth": "76",
+                "sizedeptharc": "0",
+                "sizeunits": "mm"
+            }
+        },
+        "f4dd4ea9-56d8-40b0-81a8-46cb28408b41": {
+            "index": 3,
+            "name": "keep",
+            "number": "0004",
+            "url": "https://ik.imagekit.io/kirviz/random-smaller/0004.jpg",
+            "thumbnail_url": "https://ik.imagekit.io/kirviz/random-smaller/tr:w-200,h-200/0004.jpg",
+            "category": "category.banner",
+            "version": "1",
+            "tags": {
+                "sizedescription": "",
+                "sizescale": "0.000",
+                "sizewidth": "172",
+                "sizewidtharc": "0",
+                "sizeheight": "249",
+                "sizeheightarc": "0",
+                "sizedepth": "88",
+                "sizedeptharc": "0",
+                "sizeunits": "mm"
+            }
+        },
+        "88d79960-12e2-4d29-a3a1-1d88a63627a0": {
+            "index": 4,
+            "name": "occur",
+            "number": "0005",
+            "url": "https://ik.imagekit.io/kirviz/random-smaller/0005.jpg",
+            "thumbnail_url": "https://ik.imagekit.io/kirviz/random-smaller/tr:w-200,h-200/0005.jpg",
+            "category": "category.photo",
+            "version": "1",
+            "tags": {
+                "sizedescription": "",
+                "sizescale": "0.000",
+                "sizewidth": "203",
+                "sizewidtharc": "0",
+                "sizeheight": "195",
+                "sizeheightarc": "0",
+                "sizedepth": "84",
+                "sizedeptharc": "0",
+                "sizeunits": "mm"
+            }
+        }
     }
-  }
 }

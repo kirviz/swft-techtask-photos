@@ -11,9 +11,8 @@ import Combine
 import SwiftUI
 
 class RestClient {
-    private let apiKey = "c87aed78-6e6c-41c7-959d-76fbee138452"
-    private let baseURL = "http://127.0.0.1:8080/"
-    private let imagesURL = "https://storage.googleapis.com/"
+    private let baseURL = "http://127.0.0.1:8080/livesurface/"
+    private let thumbnailSize = 200
     
     private var disposables = Set<AnyCancellable>()
     
@@ -26,7 +25,9 @@ class RestClient {
     }
     
     public func fetchImageList() {
-        guard let url = generateURL(with: .imageList(apiKey: apiKey)) else { return }
+        self.localImages.loading = true
+
+        guard let url = generateURL(with: .imageList(thumbnailSize: thumbnailSize)) else { return }
         
         let failable: AnyPublisher<ImageModels, FailureReason>
         
@@ -57,38 +58,14 @@ class RestClient {
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [weak self] images in
                 self?.localImages.images = images
-            }).store(in: &disposables)
-    }
-    
-    public func downloadImage(localImage: LocalImage) {
-        guard let url = generateURL(with: .downloadImage(fileName: localImage.metaData.image)) else { return }
-        
-        URLSession.shared.dataTaskPublisher(for: url)
-            .map { UIImage(data: $0.data) }
-            .replaceError(with: nil)
-            .eraseToAnyPublisher()
-            .receive(on: DispatchQueue.main)
-            .sink(receiveValue: { [weak self] image in
-                // duplicating the image model with actual image data added
-                let newImage = LocalImage(metaData: localImage.metaData, downloadedImage: image)
-                // overwriting the image
-                self?.localImages.images[localImage.metaData.index] = newImage
+                self?.localImages.loading = false
             }).store(in: &disposables)
     }
     
     private func generateURL(with endpoint: Endpoint) -> URL? {
         let (path, queryItems) = endpoint.properties
-        
-        // this may look ugly but is
-        let url: String
-        switch endpoint {
-        case .downloadImage:
-            url = imagesURL
-        default:
-            url = baseURL
-        }
-        
-        let urlString = "\(url)\(path)"
+
+        let urlString = "\(baseURL)\(path)"
         
         guard var urlComponents = URLComponents(string: urlString) else {
             return nil
@@ -100,19 +77,13 @@ class RestClient {
 }
 
 public enum Endpoint {
-    case imageList(apiKey: String)
-    case downloadImage(fileName: String)
-    
+    case imageList(thumbnailSize: Int)
     
     public var properties: (path: String, queryItems: [URLQueryItem]?) {
         switch self {
-        case let .imageList(key):
-            return (path: "livesurface/",
-                    queryItems: [URLQueryItem(name: "key", value: key),
-                                 URLQueryItem(name: "pro", value: "1")
-                                ])
-        case let .downloadImage(fileName):
-            return (path: "krimages/random-smaller/\(fileName)", queryItems: nil)
+        case let .imageList(thumbnailSize):
+            return (path: "list/",
+                    queryItems: [URLQueryItem(name: "thumbnail_size", value: "\(thumbnailSize)")])
         }
     }
 }

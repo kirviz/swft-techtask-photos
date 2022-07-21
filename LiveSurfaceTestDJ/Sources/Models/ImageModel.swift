@@ -17,7 +17,8 @@ struct ImageModel: Codable {
     let index: Int
     let name: String
     let number: String
-    let image: String
+    let url: String
+    let thumbnail_url: String
     let category: String
     let version: String
     

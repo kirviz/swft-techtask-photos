@@ -18,12 +18,16 @@ struct MasterView: View {
     }
 
     var body: some View {
-        List {
-            ForEach(images.images) { (image: LocalImage) in
-                NavigationLink(
-                    destination: DetailView(image: image)
-                ) {
-                    ImageRow(image: image, client: self.client)
+        if images.loading {
+            ProgressView()
+        } else {
+            List {
+                ForEach(images.images) { (image: LocalImage) in
+                    NavigationLink(
+                        destination: DetailView(image: image)
+                    ) {
+                        ImageRow(image: image, client: self.client)
+                    }
                 }
             }
         }

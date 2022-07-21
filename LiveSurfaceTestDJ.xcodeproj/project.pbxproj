@@ -3,10 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		77F4443D288992750087FB7F /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = 77F4443C288992750087FB7F /* CachedAsyncImage */; };
+		77F444412889970E0087FB7F /* NetworkImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F444402889970E0087FB7F /* NetworkImage.swift */; };
 		87535574233BBEAD00581B65 /* sample.JSON in Resources */ = {isa = PBXBuildFile; fileRef = 87535573233BBEAD00581B65 /* sample.JSON */; };
 		87535577233BBF8D00581B65 /* ImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87535576233BBF8D00581B65 /* ImageModel.swift */; };
 		87535579233BC4D700581B65 /* DebugHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87535578233BC4D700581B65 /* DebugHelpers.swift */; };
@@ -24,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		77F444402889970E0087FB7F /* NetworkImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkImage.swift; sourceTree = "<group>"; };
 		87535573233BBEAD00581B65 /* sample.JSON */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sample.JSON; sourceTree = "<group>"; };
 		87535576233BBF8D00581B65 /* ImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageModel.swift; sourceTree = "<group>"; };
 		87535578233BC4D700581B65 /* DebugHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugHelpers.swift; sourceTree = "<group>"; };
@@ -47,6 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77F4443D288992750087FB7F /* CachedAsyncImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,6 +94,7 @@
 				87B20D8C233C140D00FE8918 /* MasterView.swift */,
 				87B20D8E233C156800FE8918 /* DetailView.swift */,
 				87B20D90233C169800FE8918 /* ImageRow.swift */,
+				77F444402889970E0087FB7F /* NetworkImage.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -155,6 +160,9 @@
 			dependencies = (
 			);
 			name = LiveSurfaceTestDJ;
+			packageProductDependencies = (
+				77F4443C288992750087FB7F /* CachedAsyncImage */,
+			);
 			productName = LiveSurfaceTestDJ;
 			productReference = 87BE01C1233BBABB00BD68A6 /* LiveSurfaceTestDJ.app */;
 			productType = "com.apple.product-type.application";
@@ -183,6 +191,9 @@
 				Base,
 			);
 			mainGroup = 87BE01B8233BBABB00BD68A6;
+			packageReferences = (
+				77F4443B288992750087FB7F /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */,
+			);
 			productRefGroup = 87BE01C2233BBABB00BD68A6 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -218,6 +229,7 @@
 				87B20D8D233C140D00FE8918 /* MasterView.swift in Sources */,
 				87BE01C5233BBABB00BD68A6 /* AppDelegate.swift in Sources */,
 				87BE01C7233BBABB00BD68A6 /* SceneDelegate.swift in Sources */,
+				77F444412889970E0087FB7F /* NetworkImage.swift in Sources */,
 				87BE01C9233BBABB00BD68A6 /* ContentView.swift in Sources */,
 				8753557F233BDBC100581B65 /* RestClient.swift in Sources */,
 				8753557B233BC76900581B65 /* LocalImages.swift in Sources */,
@@ -288,7 +300,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -342,7 +354,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -412,6 +424,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		77F4443B288992750087FB7F /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/lorenzofiamingo/swiftui-cached-async-image";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		77F4443C288992750087FB7F /* CachedAsyncImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 77F4443B288992750087FB7F /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */;
+			productName = CachedAsyncImage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 87BE01B9233BBABB00BD68A6 /* Project object */;
 }
